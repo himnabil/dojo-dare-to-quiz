@@ -1,10 +1,10 @@
 # dojo-dare-to-quiz
 
-## Dare to quiz (the Game!)
- 
+## Dare to quiz (the Game)
+
 An instance of a game run in a room of players, so a room is a set of players 
 
-### Game start : 
+### Game start : 
 
 Every player have the same amount of quizCoins 
 
@@ -36,7 +36,7 @@ the player B answer S to a question asked by the player A
     
          
 
-## Rest API to implement the game
+## DOJO (Rest API to implement the game)
 
 ### Backlog 
 
@@ -80,6 +80,6 @@ US F : as a User I access the game through a secured way
 2) TDD
     1) writing unit test until it fails ( compilation error is a failing test)
     2) writing implementation until the unit test pass ( if UT pass do not add code in impl )
-    3) repeat until you can't write failing unit test  
+    3) repeat until you can't write failing unit test 
 3) Peer programing / Mob programing 
  
