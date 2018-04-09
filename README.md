@@ -1,15 +1,18 @@
 # dojo-dare-to-quiz
 
-##Dare to quiz (the Game!)
+## Dare to quiz (the Game!)
  
 An instance of a game run in a room of players, so a room is a set of players 
 
 ### Game start : 
+
 Every player have the same amount of quizCoins 
 
 ### Game end : 
+
 <i>n</i> players have no quizCoins   
-n is defined at the start game
+
+rq : n is defined at the game start 
 
 ### Wining condition
 a player have to own the highest quizCoins at the game end 
@@ -49,7 +52,11 @@ US 5 : as an OPS I restart the system without loosing the state of rooms
 
 US 6 : as an OPS I deploy multiple instance of the game api,
 
-US 7 : as a user I create a room and set the number n of players that have 0 Coins to end the game
+US 7 : as a user I create a room and set 
+- the number n of players that have 0 Coins to end the game
+- the amount of coins, every player start with 
+
+then start the game when every player is ready
 
 US 8 : as a user I see all available rooms 
 
