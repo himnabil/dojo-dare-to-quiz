@@ -46,7 +46,7 @@ US 2 : as a player I answer the last question asked to me
 
 US 3 : as a player I know how much quizCoins I have 
 
-US 4 : as a player I play in deferment rooms
+US 4 : as a player I play in different rooms
 
 US 5 : as an OPS I restart the system without loosing the state of rooms
 
