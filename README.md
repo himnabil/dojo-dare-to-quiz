@@ -55,7 +55,7 @@ US 6 : as an OPS I deploy multiple instance of the game api,
 US 7 : as a user I create a room and set 
 - the number n of players that have 0 Coins to end the game
 - the amount of coins, every player start with 
-
+deffirent
 then start the game when every player is ready
 
 US 8 : as a user I see all available rooms 
