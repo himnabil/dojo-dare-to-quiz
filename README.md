@@ -42,7 +42,7 @@ the player B answer S to a question asked by the player A
 
 US 1 : as a player I ask a question to another player ,( no persistence, no secuity , no check for player)
 
-US 2 : as a player I answer the last question asked to me 
+US 2 : as a player I answer the questions in the order asked to me 
 
 US 3 : as a player I know how much quizCoins I have 
 

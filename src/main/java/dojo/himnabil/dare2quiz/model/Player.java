@@ -1,20 +1,25 @@
 package dojo.himnabil.dare2quiz.model;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
 
+@AllArgsConstructor
+@Builder
+@NoArgsConstructor
 public class Player {
-    public Player(String id, int nbCoins) {
-        this.id = id;
-        this.nbCoins = nbCoins;
-    }
+
+    public static final Integer DEFAULT_COINS_VALUE = 100;
 
     @Getter
     private String id ;
 
     @Getter
     @Setter
-    private int nbCoins;
+    private int nbCoins = DEFAULT_COINS_VALUE;
+
+    @Getter
+    private Queue<Question> questions = new ArrayDeque<>();
 
 }

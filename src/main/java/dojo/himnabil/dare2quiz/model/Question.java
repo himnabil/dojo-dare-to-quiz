@@ -1,6 +1,7 @@
 package dojo.himnabil.dare2quiz.model;
 
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 import org.springframework.util.Assert;
 
@@ -8,6 +9,7 @@ import java.util.Set;
 
 @Value
 @Builder
+@NoArgsConstructor(force = true)
 public class Question {
     public Question(long nbCoins, String value, Set<String> answers, String validAnswer, Player owner) {
         Assert.isTrue(nbCoins > 0, "nbCoins > 0");
