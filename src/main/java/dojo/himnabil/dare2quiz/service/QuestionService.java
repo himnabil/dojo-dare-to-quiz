@@ -2,33 +2,36 @@ package dojo.himnabil.dare2quiz.service;
 
 import dojo.himnabil.dare2quiz.model.Player;
 import dojo.himnabil.dare2quiz.model.Question;
+import dojo.himnabil.dare2quiz.repository.PlayerRepository;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Service
 @Slf4j
+@AllArgsConstructor
 public class QuestionService {
 
-    private Map<String, Player> playersById;
+    private PlayerRepository playerRepository;
 
-    public void askQuestion(String askedId,  Question question) {
+    public void askQuestion(String askedPlayerId,  Question question) {
         long mise = question.getNbCoins();
         long dispo = question.getOwner().getNbCoins();
         if (dispo - mise <0) {
-//            throw new exception....
+            throw new RuntimeException("Insufficient coins");
         }
 
-        if (playersById.containsKey(askedId)) {
-            playersById.get(askedId).getQuestions().add(question);
-        } else {
-            Player player= Player.builder().id(askedId).build();
-            player.getQuestions().add(question);
-            playersById.put(askedId, player);
-
-            log.info("new player with id {} created", askedId);
-
-        }
+        playerRepository.getPlayer(askedPlayerId).getQuestions().add(question);
     }
+
+    public boolean answerQuestion(String playerId, String answer) {
+        Player player = playerRepository.getPlayer(playerId);
+        Question poll = player.getQuestions().poll();
+        if (poll == null) {
+            throw new IllegalStateException("No question left");
+        }
+        //TODO Gérer les mises
+        return answer.equals(poll.getValidAnswer());
+    }
+
 }

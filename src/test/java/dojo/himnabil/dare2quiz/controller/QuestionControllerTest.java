@@ -9,14 +9,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import java.util.Arrays;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,7 +38,7 @@ public class QuestionControllerTest {
     }
 
     @Test
-    public void askQuestion() throws Exception{
+    public void askQuestion() throws Exception {
         Question question = Question.builder()
                 .nbCoins(2)
                 .owner(Player

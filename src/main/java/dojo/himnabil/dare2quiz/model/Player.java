@@ -6,20 +6,20 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
-@NoArgsConstructor
 public class Player {
 
     public static final Integer DEFAULT_COINS_VALUE = 100;
 
     @Getter
-    private String id ;
+    final private String id ;
 
     @Getter
     @Setter
     private int nbCoins = DEFAULT_COINS_VALUE;
 
     @Getter
-    private Queue<Question> questions = new ArrayDeque<>();
+    final private Queue<Question> questions = new ArrayDeque<>();
 
 }
