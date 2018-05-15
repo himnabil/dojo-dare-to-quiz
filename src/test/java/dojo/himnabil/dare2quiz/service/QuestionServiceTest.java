@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,8 +28,8 @@ public class QuestionServiceTest {
     private QuestionService questionService;
 
 
-    private Player player = new Player("1", 1);
-    private Player player2 = new Player("2", 1);
+    private Player player = new Player("1", BigDecimal.TEN);
+    private Player player2 = new Player("2", BigDecimal.TEN);
 
     Set<String> answers = new HashSet<>();
     private Question question;
@@ -38,7 +39,7 @@ public class QuestionServiceTest {
         when(playerRepository.getPlayer(anyString())).thenReturn(player2);
         answers.add("dgfqs");
         answers.add("toto");
-        question = new Question(1, "toto", answers, "toto", player);
+        question = new Question(BigDecimal.TEN, "toto", answers, "toto", player);
     }
 
     @Test

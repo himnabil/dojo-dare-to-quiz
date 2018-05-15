@@ -5,14 +5,15 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 import org.springframework.util.Assert;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 @Value
 @Builder
 @NoArgsConstructor(force = true)
 public class Question {
-    public Question(long nbCoins, String value, Set<String> answers, String validAnswer, Player owner) {
-        Assert.isTrue(nbCoins > 0, "nbCoins > 0");
+    public Question(BigDecimal nbCoins, String value, Set<String> answers, String validAnswer, Player owner) {
+        Assert.isTrue(nbCoins.compareTo(BigDecimal.ZERO) > 0, "nbCoins > 0");
         Assert.notEmpty(answers, "answers should not be empty.");
         Assert.notNull(validAnswer, "validAnswer should not be null.");
         Assert.notNull(owner, "owner should not be null.");
@@ -24,7 +25,7 @@ public class Question {
         this.owner = owner;
     }
 
-    private long nbCoins;
+    private BigDecimal nbCoins;
     private String value;
     private Set<String> answers;
     private String validAnswer;

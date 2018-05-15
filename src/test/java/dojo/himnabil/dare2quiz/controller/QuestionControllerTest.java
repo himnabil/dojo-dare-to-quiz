@@ -14,6 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.math.BigDecimal;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -40,10 +42,10 @@ public class QuestionControllerTest {
     @Test
     public void askQuestion() throws Exception {
         Question question = Question.builder()
-                .nbCoins(2)
+                .nbCoins(BigDecimal.TEN)
                 .owner(Player
                         .builder()
-                        .nbCoins(2)
+                        .nbCoins(BigDecimal.TEN)
                         .id("1")
                         .build())
                 .value("toto?")
