@@ -10,33 +10,37 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@WebFluxTest(QuestionController.class)
 public class QuestionControllerTest {
 
 
-    private MockMvc mockMvc;
+    @Autowired
+    private WebTestClient webTestClient;
 
     private static final String POST_ASK_QUESTION = QuestionController.PLAYERS_PLAYER_ID_ASK;
 
-    @Mock
+    @MockBean
     private QuestionService service;
 
     private QuestionController controller;
 
     @Before
     public void setup() {
-
         controller = new QuestionController(service);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
@@ -52,10 +56,9 @@ public class QuestionControllerTest {
                 .validAnswer("validAnswer")
                 .answers(Sets.newLinkedHashSet("validAnswer", "badAnswer1"))
                 .build();
-        this.mockMvc
-                .perform(post(POST_ASK_QUESTION, "1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(new ObjectMapper().writeValueAsString(question)))
-                .andExpect(status().isOk());
+        webTestClient.post().uri(POST_ASK_QUESTION, "1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromObject(new ObjectMapper().writeValueAsString(question)))
+                .exchange().expectStatus().isOk();
     }
 }

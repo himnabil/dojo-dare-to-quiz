@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @AllArgsConstructor
 public class QuestionController {
-    public static final String PLAYER_ID = "player-id";
+    public static final String PLAYER_ID = "playerId";
     public static final String PLAYERS_PLAYER_ID_ASK = "/players/{" + PLAYER_ID + "}/ask";
     public static final String PLAYERS_PLAYER_ID = "/players/{" + PLAYER_ID + "}";
     public static final String PLAYERS_PLAYER_ID_ANSWER = "/players/{" + PLAYER_ID + "}/answer";

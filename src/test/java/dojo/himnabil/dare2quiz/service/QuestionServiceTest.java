@@ -9,19 +9,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class QuestionServiceTest {
+    @Mock
+    private PlayerService playerService;
     @Mock
     private PlayerRepository playerRepository;
     @InjectMocks
@@ -36,7 +37,7 @@ public class QuestionServiceTest {
 
     @Before
     public void init(){
-        when(playerRepository.getPlayer(anyString())).thenReturn(player2);
+        when(playerService.getOrCreate(anyString())).thenReturn(player2);
         answers.add("dgfqs");
         answers.add("toto");
         question = new Question(BigDecimal.TEN, "toto", answers, "toto", player);
@@ -53,7 +54,7 @@ public class QuestionServiceTest {
 
         Player t = new Player(playerId);
         t.getQuestions().add(question);
-        when(playerRepository.getPlayer(anyString())).thenReturn(t);
+        when(playerService.getOrCreate(anyString())).thenReturn(t);
 
         boolean b = questionService.answerQuestion(playerId, "toto");
         Assert.assertTrue(b);
@@ -65,7 +66,7 @@ public class QuestionServiceTest {
 
         Player t = new Player(playerId);
         t.getQuestions().add(question);
-        when(playerRepository.getPlayer(anyString())).thenReturn(t);
+        when(playerService.getOrCreate(anyString())).thenReturn(t);
 
         boolean b = questionService.answerQuestion(playerId, "dgfqs");
         Assert.assertFalse(b);
@@ -77,7 +78,7 @@ public class QuestionServiceTest {
 
         Player t = new Player(playerId);
         t.getQuestions().add(question);
-        when(playerRepository.getPlayer(anyString())).thenReturn(t);
+        when(playerService.getOrCreate(anyString())).thenReturn(t);
 
         boolean b = questionService.answerQuestion(playerId, "aze");
         Assert.assertFalse(b);
